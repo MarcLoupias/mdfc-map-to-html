@@ -1,8 +1,9 @@
 'use strict';
 
-import { MdParsedDocument, TargetDocument } from './model/documents/default-impl';
 import { MarkedOptions } from 'marked';
-import { MapParsedDocumentFnType, UnConfiguredMapParsedDocumentFnType } from './model/action-convert/types';
+import {
+    MdParsedDocument, TargetDocument, MapParsedDocumentFnType, UnConfiguredMapParsedDocumentFnType
+} from 'md-file-converter';
 
 export function makeUnConfiguredMapParsedDocument({ marked }: any): UnConfiguredMapParsedDocumentFnType {
     return (conf: { markedOptions: MarkedOptions }): MapParsedDocumentFnType => {

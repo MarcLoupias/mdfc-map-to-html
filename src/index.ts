@@ -4,7 +4,7 @@ import * as marked from 'marked';
 
 import markedRendererHtmlImpl from './marked-renderer-html-impl';
 import { makeUnConfiguredMapParsedDocument } from './map-parsed-document';
-import { IImplPkgBasic, IImplPkgMapper, UnConfiguredMapParsedDocumentFnType } from './model/action-convert/types';
+import { IImplPkgBasic, IImplPkgMapper, UnConfiguredMapParsedDocumentFnType } from 'md-file-converter';
 
 const unConfiguredMapParsedDocument = makeUnConfiguredMapParsedDocument({ marked });
 const targetDocumentFileExtension = '.html';
