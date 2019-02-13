@@ -1,0 +1,28 @@
+language: node_js
+
+node_js:
+    - 10
+
+cache: npm
+
+install:
+    - npm ci
+
+branches:
+    except:
+        - '/^v\d+\.\d+\.\d+$/'
+
+jobs:
+    include:
+        - stage: commitlint
+          script:
+              - commitlint-travis
+        - stage: test
+          script:
+              - npm run test
+        - stage: deploy
+          if: branch == master && !fork
+          node_js: '10'
+          script:
+              - npm install -g semantic-release@^15
+              - semantic-release

@@ -1,0 +1,88 @@
+{
+    "name": "mdfc-map-to-html",
+    "version": "0.0.0-development",
+    "description": "markdown to html impl for md-file-converter",
+    "author": "marlou <pro@marc-loupias.fr>",
+    "contributors": [
+        {
+            "name": "Marc Loupias",
+            "email": "pro@marc-loupias.fr",
+            "url": "https://github.com/MarcLoupias"
+        }
+    ],
+    "keywords": [
+        "md-file-converter",
+        "converter",
+        "marked",
+        "markdown",
+        "bbcode"
+    ],
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MarcLoupias/mdfc-map-to-html"
+    },
+    "bugs": {
+        "url": "https://github.com/MarcLoupias/mdfc-map-to-html/issues"
+    },
+    "homepage": "https://github.com/MarcLoupias/mdfc-map-to-html",
+    "engines": {
+        "node": ">=10.13.0",
+        "npm": ">=6.4.1"
+    },
+    "main": "bin/index.js",
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "npm test",
+            "pre-push": "npm test"
+        }
+    },
+    "scripts": {
+        "cz-commit": "git-cz",
+        "start": "node ./node_modules/.bin/mdfc convert '../../../dist' 'test-news.md'",
+        "lint": "./node_modules/.bin/eslint -c .eslintrc.json tests/*.spec.js",
+        "lint-ts": "./node_modules/tslint/bin/tslint -t stylish -c tslint.json src/**/*.ts src/*.ts",
+        "compile": "rimraf 'dist/' && ./node_modules/.bin/tsc --pretty --project 'tsconfig-dev.json'",
+        "pretest": "npm run compile && npm run lint && npm run lint-ts && chmod 764 dist/index.js",
+        "test": "NODE_NO_WARNINGS=1 mocha --bail tests/*.spec.js",
+        "posttest": "chmod 664 dist/index.js",
+        "prebuild": "rimraf bin/",
+        "build": "./node_modules/.bin/tsc --pretty && chmod 764 bin/index.js",
+        "postbuild": "NODE_NO_WARNINGS=1 mocha --bail tests/*.spec.js && chmod 664 bin/index.js",
+        "semantic-release": "semantic-release"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ]
+    },
+    "dependencies": {
+        "marked": "^0.6.0",
+        "md-file-converter": "1.0.1"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^7.5.0",
+        "@commitlint/config-conventional": "^7.5.0",
+        "@commitlint/travis-cli": "^7.5.0",
+        "@types/marked": "^0.6.0",
+        "@types/node": "^10.12.0",
+        "chai": "^4.2.0",
+        "commitizen": "^3.0.5",
+        "cz-conventional-changelog": "^2.1.0",
+        "eslint": "^5.11.1",
+        "eslint-plugin-node": "^8.0.0",
+        "eslint-plugin-security": "^1.4.0",
+        "husky": "^1.3.1",
+        "mocha": "^5.2.0",
+        "rimraf": "2.6.3",
+        "semantic-release": "^15.13.3",
+        "tslint": "5.12.1",
+        "typescript": "^3.3.3"
+    }
+}
