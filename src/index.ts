@@ -16,7 +16,8 @@ const markedOptions: marked.MarkedOptions = {
     renderer: markedRenderer,
     smartypants: true,
     gfm: true,
-    breaks: true
+    breaks: true,
+    tables: true
 };
 
 class MapToHtmlImplPkg implements IImplPkgBasic, IImplPkgMapper {
