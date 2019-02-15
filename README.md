@@ -14,10 +14,10 @@ Internals links insides markdown files should point to `.md` files. This impl ha
 
 ## installation
 
-In the repository containing your news markdown documents, add this package to devDependencies :
+In the repository containing your markdown documents, add this package to devDependencies :
 
 ```bash
-npm i --D mdfc-map-to-html
+npm i -D mdfc-map-to-html
 ```
 
 ## usage
@@ -30,7 +30,7 @@ node ./node_modules/.bin/mdfc convert 'mdfc-map-to-html' '<markdown-files-path>'
 
 `html` files will be created in the same directory as the markdown files.
 
-If you want to create them in another directory you can add a --dest option with the destination path, for example :
+If you want to create them in another directory you can add a `--dest` option with the destination path, for example :
 
 ```bash
 node ./node_modules/.bin/mdfc convert 'mdfc-map-to-html' 'tests/actual-files/faq/**/*.md' --dest 'html-output/'
