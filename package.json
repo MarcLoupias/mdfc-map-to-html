@@ -15,7 +15,7 @@
         "converter",
         "marked",
         "markdown",
-        "bbcode"
+        "html"
     ],
     "license": "ISC",
     "repository": {
