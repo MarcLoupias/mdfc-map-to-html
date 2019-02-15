@@ -101,3 +101,25 @@ describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual
         fs.unlinkSync('tests/actual-files/faq/section-004/004.q003.html');
     });
 });
+
+describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual-files/doc-w-tables/javascript-overview.md\'"', function () {
+    let result;
+
+    beforeEach(function() {
+        result = executeCliSync(['convert', '../../../dist', 'tests/actual-files/doc-w-tables/javascript-overview.md']);
+        expect(result.stdout).to.include('tests/actual-files/doc-w-tables/javascript-overview.html');
+        expect(result.stdout).to.include('Processing files done.');
+    });
+
+    it('should output a final html file with a content equal to tests/expected-files/doc-w-tables/javascript-overview.html content', async () => {
+        const results = await Promise.all([
+            fsp.readFile('tests/actual-files/doc-w-tables/javascript-overview.html', { encoding: 'utf-8' }),
+            fsp.readFile('tests/expected-files/doc-w-tables/javascript-overview.html', { encoding: 'utf-8' })
+        ]);
+        expect(results[0]).to.equal(results[1]);
+    });
+
+    afterEach(function() {
+        fs.unlinkSync('tests/actual-files/doc-w-tables/javascript-overview.html');
+    });
+});
