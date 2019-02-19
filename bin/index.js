@@ -8,9 +8,11 @@ const targetDocumentFileExtension = '.html';
 const markedRenderer = Object.assign(new marked.Renderer(), { ...marked_renderer_html_impl_1.default });
 const markedOptions = {
     renderer: markedRenderer,
+    langPrefix: '',
     smartypants: true,
     gfm: true,
-    breaks: true
+    breaks: true,
+    tables: true
 };
 class MapToHtmlImplPkg {
     constructor() {
