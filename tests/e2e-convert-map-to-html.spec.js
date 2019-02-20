@@ -123,3 +123,25 @@ describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual
         fs.unlinkSync('tests/actual-files/doc-w-tables/javascript-overview.html');
     });
 });
+
+describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual-files/css-support/test-news-with-css.md\'"', function () {
+    let result;
+
+    beforeEach(function() {
+        result = executeCliSync(['convert', '../../../dist', 'tests/actual-files/css-support/test-news-with-css.md']);
+        expect(result.stdout).to.include('tests/actual-files/css-support/test-news-with-css.html');
+        expect(result.stdout).to.include('Processing files done.');
+    });
+
+    it('should generate css <link> tags properly', async () => {
+        const results = await Promise.all([
+            fsp.readFile('tests/actual-files/css-support/test-news-with-css.html', { encoding: 'utf-8' }),
+            fsp.readFile('tests/expected-files/css-support/test-news-with-css.html', { encoding: 'utf-8' })
+        ]);
+        expect(results[0]).to.equal(results[1]);
+    });
+
+    afterEach(function() {
+        fs.unlinkSync('tests/actual-files/css-support/test-news-with-css.html');
+    });
+});

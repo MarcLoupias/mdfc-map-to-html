@@ -37,3 +37,50 @@ node ./node_modules/.bin/mdfc convert 'mdfc-map-to-html' 'tests/actual-files/faq
 ```
 
 but the markdown structure will not be preserved, so be careful of `.md` file naming, each filename must be unique.
+
+### css support
+
+You can define custom css stylesheet injection with [front-matter](https://www.npmjs.com/package/front-matter) in your markdown files. 
+
+See [`tests/actual-files/css-support/test-news-with-css.md`](https://github.com/MarcLoupias/mdfc-map-to-html/blob/master/tests/actual-files/css-support/test-news-with-css.md) for example.
+
+The idea is to define the stylesheet values in the front-matter to add it to the generated html during the mapping phase.
+
+Your yaml could look like this :
+
+```yaml
+htmlHead:
+    links:
+        - href: mobile.css
+          rel: stylesheet
+          media: all
+        - href: print.css
+          rel: stylesheet
+          media: print
+        - href: desktop.css
+          rel: stylesheet
+          media: 'screen and (min-width: 600px)'
+        - href: favicon32.png
+          rel: icon
+        - href: favicon72.png
+          rel: apple-touch-icon-precomposed
+          sizes: 72x72
+```
+
+You can deal with favicon here also.
+
+An `<article>` tag is added to wrap the generated content inside the document `<body>`.
+
+A class name can be added to the `<article>` tag, just add a `containerClass` property to the `htmlHead` property in the yaml like that :
+
+```yaml
+htmlHead:
+    containerClass: 'my-class'
+    links:
+        - href: mobile.css
+          rel: stylesheet
+          media: all
+        - href: print.css
+          rel: stylesheet
+          media: print
+```

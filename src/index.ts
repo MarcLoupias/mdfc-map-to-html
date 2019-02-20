@@ -4,7 +4,10 @@ import * as marked from 'marked';
 
 import markedRendererHtmlImpl from './marked-renderer-html-impl';
 import { makeUnConfiguredMapParsedDocument } from './map-parsed-document';
-import { IImplPkgBasic, IImplPkgMapper, UnConfiguredMapParsedDocumentFnType } from 'md-file-converter';
+import {
+    IImplPkgBasic, IImplPkgParser, IImplPkgMapper, ParseLexeredDocumentFnType, UnConfiguredMapParsedDocumentFnType
+} from 'md-file-converter';
+import { parseLexeredDocument } from './parse-lexered-document';
 
 const unConfiguredMapParsedDocument = makeUnConfiguredMapParsedDocument({ marked });
 const targetDocumentFileExtension = '.html';
@@ -21,9 +24,10 @@ const markedOptions: marked.MarkedOptions = {
     tables: true
 };
 
-class MapToHtmlImplPkg implements IImplPkgBasic, IImplPkgMapper {
+class MapToHtmlImplPkg implements IImplPkgBasic, IImplPkgParser, IImplPkgMapper {
     public markedOptions: marked.MarkedOptions = markedOptions;
     public targetDocumentFileExtension: string = targetDocumentFileExtension;
+    public parseLexeredDocument: ParseLexeredDocumentFnType = parseLexeredDocument;
     public unConfiguredMapParsedDocument: UnConfiguredMapParsedDocumentFnType = unConfiguredMapParsedDocument;
 }
 
