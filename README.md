@@ -84,3 +84,19 @@ htmlHead:
           rel: stylesheet
           media: print
 ```
+
+### `<title>` support
+
+Like css support, you can define your document `<title>` with [front-matter](https://www.npmjs.com/package/front-matter) in your markdown files.
+
+The html document `<title>` is very important for [SEO](https://en.wikipedia.org/wiki/Search_engine_optimization), choose it carefully.
+
+To specify the `<title>` value, add a title property in the front-matter like this :
+
+```yaml
+htmlHead:
+    title: 'git-sizer publié par GitHub'
+```
+
+If you don't, the `<title>` tag value is set with the markdown file basename.
+For example if your markdown file is named `my-article.md`, you will get `<title>my-article</title>`.
