@@ -1,6 +1,6 @@
 'use strict';
 
-import { FmHtmlDocument, FmLink } from './front-matter';
+import { FmHtmlDocument, FmLink, FmMeta } from './front-matter';
 
 export function buildLinkTags(fmHtmlDocument: FmHtmlDocument): string {
     if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead()) {
@@ -44,4 +44,28 @@ export function buildTitle(fmHtmlDocument: FmHtmlDocument): string {
     }
 
     return fmHtmlDocument.getHtmlHead().title;
+}
+
+export function buildMetaTags(fmHtmlDocument: FmHtmlDocument): string {
+    if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead()) {
+        return '';
+    }
+    if (!fmHtmlDocument.getHtmlHead().getMetaTags() || fmHtmlDocument.getHtmlHead().getMetaTags().length < 1) {
+        return '';
+    }
+
+    let metaTags = '';
+    fmHtmlDocument.getHtmlHead().getMetaTags().forEach((element: FmMeta) => {
+        let metaTag = '';
+        metaTag += '<meta';
+        metaTag += (element.name) ? ` name="${element.name}"` : '';
+        metaTag += (element.property) ? ` property="${element.property}"` : '';
+        metaTag += (element.httpEquiv) ? ` http-equiv="${element.httpEquiv}"` : '';
+        metaTag += (element.content) ? ` content="${element.content}"` : '';
+        metaTag += '>';
+
+        metaTags += metaTag;
+    });
+
+    return metaTags;
 }
