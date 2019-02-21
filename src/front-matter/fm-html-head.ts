@@ -3,10 +3,12 @@
 import { FmLink } from './fm-link';
 
 export class FmHtmlHead {
+    public title?: string;
     public containerClass?: string;
     protected links: FmLink[];
 
-    public constructor({ containerClass, links }: any) {
+    public constructor({ title, containerClass, links }: any) {
+        this.title = title || '';
         this.containerClass = containerClass || '';
         this.setLinks(links);
     }

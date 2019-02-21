@@ -32,3 +32,10 @@ function buildContainerClass(fmHtmlDocument) {
     return ` class="${fmHtmlDocument.getHtmlHead().containerClass}"`;
 }
 exports.buildContainerClass = buildContainerClass;
+function buildTitle(fmHtmlDocument) {
+    if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead() || !fmHtmlDocument.getHtmlHead().title) {
+        return '';
+    }
+    return fmHtmlDocument.getHtmlHead().title;
+}
+exports.buildTitle = buildTitle;

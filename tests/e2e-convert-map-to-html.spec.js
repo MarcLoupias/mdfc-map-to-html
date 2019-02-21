@@ -145,3 +145,25 @@ describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual
         fs.unlinkSync('tests/actual-files/css-support/test-news-with-css.html');
     });
 });
+
+describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual-files/title-support/test-news-with-title.md\'"', function () {
+    let result;
+
+    beforeEach(function() {
+        result = executeCliSync(['convert', '../../../dist', 'tests/actual-files/title-support/test-news-with-title.md']);
+        expect(result.stdout).to.include('tests/actual-files/title-support/test-news-with-title.html');
+        expect(result.stdout).to.include('Processing files done.');
+    });
+
+    it('should generate <title> tags properly : if a title is present in front-matter use it, else use the file basename', async () => {
+        const results = await Promise.all([
+            fsp.readFile('tests/actual-files/title-support/test-news-with-title.html', { encoding: 'utf-8' }),
+            fsp.readFile('tests/expected-files/title-support/test-news-with-title.html', { encoding: 'utf-8' })
+        ]);
+        expect(results[0]).to.equal(results[1]);
+    });
+
+    afterEach(function() {
+        fs.unlinkSync('tests/actual-files/title-support/test-news-with-title.html');
+    });
+});

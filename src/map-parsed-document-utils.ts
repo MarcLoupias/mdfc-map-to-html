@@ -37,3 +37,11 @@ export function buildContainerClass(fmHtmlDocument: FmHtmlDocument): string {
 
     return ` class="${fmHtmlDocument.getHtmlHead().containerClass}"`;
 }
+
+export function buildTitle(fmHtmlDocument: FmHtmlDocument): string {
+    if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead() || !fmHtmlDocument.getHtmlHead().title) {
+        return '';
+    }
+
+    return fmHtmlDocument.getHtmlHead().title;
+}
