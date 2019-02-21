@@ -39,3 +39,24 @@ function buildTitle(fmHtmlDocument) {
     return fmHtmlDocument.getHtmlHead().title;
 }
 exports.buildTitle = buildTitle;
+function buildMetaTags(fmHtmlDocument) {
+    if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead()) {
+        return '';
+    }
+    if (!fmHtmlDocument.getHtmlHead().getMetaTags() || fmHtmlDocument.getHtmlHead().getMetaTags().length < 1) {
+        return '';
+    }
+    let metaTags = '';
+    fmHtmlDocument.getHtmlHead().getMetaTags().forEach((element) => {
+        let metaTag = '';
+        metaTag += '<meta';
+        metaTag += (element.name) ? ` name="${element.name}"` : '';
+        metaTag += (element.property) ? ` property="${element.property}"` : '';
+        metaTag += (element.httpEquiv) ? ` http-equiv="${element.httpEquiv}"` : '';
+        metaTag += (element.content) ? ` content="${element.content}"` : '';
+        metaTag += '>';
+        metaTags += metaTag;
+    });
+    return metaTags;
+}
+exports.buildMetaTags = buildMetaTags;

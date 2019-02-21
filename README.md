@@ -100,3 +100,32 @@ htmlHead:
 
 If you don't, the `<title>` tag value is set with the markdown file basename.
 For example if your markdown file is named `my-article.md`, you will get `<title>my-article</title>`.
+
+### `<meta>` tags support
+
+Like css support, you can define your document `<meta>` with [front-matter](https://www.npmjs.com/package/front-matter) in your markdown files.
+
+The idea is to define the meta tags values in the front-matter to add it to the generated html during the mapping phase.
+
+Your yaml could look like this :
+
+```yaml
+htmlHead:
+    metaTags:
+        - name: description
+          content: 'my uber document'
+        - name: viewport
+          content: 'width=device-width, initial-scale=1, minimal-ui'
+        - property: 'og:type'
+          content: website
+        - httpEquiv: 'Expires'
+          content: '0'
+```
+
+The html `<meta>` tags are very important to manage for :
+
+- [SEO](https://en.wikipedia.org/wiki/Search_engine_optimization) (see also [the Open Graph protocol](http://ogp.me/) and [this medium article](https://medium.freecodecamp.org/how-to-avoid-the-shaming-look-your-site-has-on-twitter-and-facebook-f2e8f4be568d))
+- [viewport](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag) behavior (especially important for mobiles)
+- ...
+
+See [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) for further information.
