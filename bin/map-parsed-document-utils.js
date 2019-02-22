@@ -60,3 +60,29 @@ function buildMetaTags(fmHtmlDocument) {
     return metaTags;
 }
 exports.buildMetaTags = buildMetaTags;
+function buildScripts(fmHtmlDocument) {
+    if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead()) {
+        return '';
+    }
+    if (!fmHtmlDocument.getHtmlHead().getScripts() || fmHtmlDocument.getHtmlHead().getScripts().length < 1) {
+        return '';
+    }
+    let scripts = '';
+    fmHtmlDocument.getHtmlHead().getScripts().forEach((element) => {
+        if (element.text) {
+            scripts += `<script>${element.text}</script>`;
+        }
+        else {
+            let script = '';
+            script += '<script';
+            script += (element.src) ? ` src="${element.src}"` : '';
+            script += (element.async) ? ' async' : '';
+            script += (element.defer) ? ' defer' : '';
+            script += (element.crossorigin) ? ` crossorigin="${element.crossorigin}"` : '';
+            script += '></script>';
+            scripts += script;
+        }
+    });
+    return scripts;
+}
+exports.buildScripts = buildScripts;

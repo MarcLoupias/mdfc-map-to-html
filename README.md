@@ -38,7 +38,7 @@ node ./node_modules/.bin/mdfc convert 'mdfc-map-to-html' 'tests/actual-files/faq
 
 but the markdown structure will not be preserved, so be careful of `.md` file naming, each filename must be unique.
 
-### css support
+### css support
 
 You can define custom css stylesheet injection with [front-matter](https://www.npmjs.com/package/front-matter) in your markdown files. 
 
@@ -129,3 +129,28 @@ The html `<meta>` tags are very important to manage for :
 - ...
 
 See [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta) for further information.
+
+### `<script>` tags support
+
+Like css support, you can define your document `<script>` with [front-matter](https://www.npmjs.com/package/front-matter) in your markdown files.
+
+Same as above your yaml could look like this :
+
+```yaml
+htmlHead:
+    scripts:
+        - src: 'my-script.js'
+          async: true
+        - src: 'http://cdn.domain.tld/dependency.js'
+          defer: true
+          crossorigin: 'anonymous'
+        - text: 'document.title = "a new title";'
+```
+
+and it will output at the end of `<head>` tag :
+
+```html
+<script src="my-script.js" async></script><script src="http://cdn.domain.tld/dependency.js" defer crossorigin="anonymous"></script><script>document.title = "a new title";</script>
+```
+
+See [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script) for further information.

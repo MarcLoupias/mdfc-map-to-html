@@ -7,3 +7,4 @@ __export(require("./fm-html-document"));
 __export(require("./fm-html-head"));
 __export(require("./fm-link"));
 __export(require("./fm-meta"));
+__export(require("./fm-script"));
