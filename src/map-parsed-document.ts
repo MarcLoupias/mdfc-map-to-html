@@ -6,7 +6,7 @@ import {
 } from 'md-file-converter';
 import { FmHtmlDocument } from './front-matter';
 
-export function makeUnConfiguredMapParsedDocument({ buildTitle, buildLinkTags, buildMetaTags, buildContainerClass }: any) {
+export function makeUnConfiguredMapParsedDocument({ buildTitle, buildLinkTags, buildMetaTags, buildContainerClass, buildScripts }: any) {
     return ({ marked }: any): UnConfiguredMapParsedDocumentFnType => {
         return (conf: { markedOptions: MarkedOptions }): MapParsedDocumentFnType => {
             return (mdParsedDocument: MdParsedDocument): TargetDocument => {
@@ -16,10 +16,11 @@ export function makeUnConfiguredMapParsedDocument({ buildTitle, buildLinkTags, b
                 let title = buildTitle(mdParsedDocument.fmMetaData as FmHtmlDocument);
                 title = (title) ? title : mdParsedDocument.documentPaths.basename;
                 const containerClass = buildContainerClass(mdParsedDocument.fmMetaData as FmHtmlDocument);
+                const scriptTags = buildScripts(mdParsedDocument.fmMetaData as FmHtmlDocument);
 
                 return TargetDocument.createTargetDocument({
                     documentPaths: mdParsedDocument.documentPaths,
-                    transformedData: `<!DOCTYPE html><html><head><meta charset="utf-8">${metaTags}<title>${title}</title>${linkTags}</head><body><article${containerClass}>${htmlBody}</article></body></html>`,
+                    transformedData: `<!DOCTYPE html><html><head><meta charset="utf-8">${metaTags}<title>${title}</title>${linkTags}${scriptTags}</head><body><article${containerClass}>${htmlBody}</article></body></html>`,
                     fmMetaData: mdParsedDocument.fmMetaData
                 });
             };

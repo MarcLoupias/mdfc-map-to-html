@@ -8,9 +8,11 @@ import {
     IImplPkgBasic, IImplPkgParser, IImplPkgMapper, ParseLexeredDocumentFnType, UnConfiguredMapParsedDocumentFnType
 } from 'md-file-converter';
 import { parseLexeredDocument } from './parse-lexered-document';
-import { buildTitle, buildLinkTags, buildMetaTags, buildContainerClass } from './map-parsed-document-utils';
+import {
+    buildTitle, buildLinkTags, buildMetaTags, buildContainerClass, buildScripts
+} from './map-parsed-document-utils';
 
-const unConfiguredMapParsedDocument = makeUnConfiguredMapParsedDocument({ buildTitle, buildLinkTags, buildMetaTags, buildContainerClass })({ marked });
+const unConfiguredMapParsedDocument = makeUnConfiguredMapParsedDocument({ buildTitle, buildLinkTags, buildMetaTags, buildContainerClass, buildScripts })({ marked });
 const targetDocumentFileExtension = '.html';
 const markedRenderer: marked.Renderer = Object.assign(
     new marked.Renderer(),

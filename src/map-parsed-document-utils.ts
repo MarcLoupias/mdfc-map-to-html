@@ -1,6 +1,6 @@
 'use strict';
 
-import { FmHtmlDocument, FmLink, FmMeta } from './front-matter';
+import { FmHtmlDocument, FmLink, FmMeta, FmScript } from './front-matter';
 
 export function buildLinkTags(fmHtmlDocument: FmHtmlDocument): string {
     if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead()) {
@@ -68,4 +68,33 @@ export function buildMetaTags(fmHtmlDocument: FmHtmlDocument): string {
     });
 
     return metaTags;
+}
+
+export function buildScripts(fmHtmlDocument: FmHtmlDocument): string {
+    if (!fmHtmlDocument || !fmHtmlDocument.getHtmlHead()) {
+        return '';
+    }
+    if (!fmHtmlDocument.getHtmlHead().getScripts() || fmHtmlDocument.getHtmlHead().getScripts().length < 1) {
+        return '';
+    }
+
+    let scripts = '';
+    fmHtmlDocument.getHtmlHead().getScripts().forEach((element: FmScript) => {
+        if (element.text) {
+            scripts += `<script>${element.text}</script>`;
+
+        } else {
+            let script = '';
+            script += '<script';
+            script += (element.src) ? ` src="${element.src}"` : '';
+            script += (element.async) ? ' async' : '';
+            script += (element.defer) ? ' defer' : '';
+            script += (element.crossorigin) ? ` crossorigin="${element.crossorigin}"` : '';
+            script += '></script>';
+
+            scripts += script;
+        }
+    });
+
+    return scripts;
 }
