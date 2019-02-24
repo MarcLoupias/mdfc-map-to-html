@@ -40,7 +40,7 @@
     },
     "scripts": {
         "cz-commit": "git-cz",
-        "start": "node ./node_modules/.bin/mdfc convert '../../../dist' 'test-news.md'",
+        "start": "node ./node_modules/.bin/mdfc convert '../../../dist' 'tests/actual-files/doc-w-tables/javascript-overview.md'",
         "lint": "./node_modules/.bin/eslint -c .eslintrc.json tests/*.spec.js",
         "lint-ts": "./node_modules/tslint/bin/tslint -t stylish -c tslint.json src/**/*.ts src/*.ts",
         "compile": "rimraf 'dist/' && ./node_modules/.bin/tsc --pretty --project 'tsconfig-dev.json'",
