@@ -14,7 +14,7 @@ describe('command :: "md-file-converter convert \'../../../dist\' \'tests/actual
         expect(result.stdout).to.include('Processing files done.');
     });
 
-    it('should output a final html file with a content equal to tests/expected-files/map-to-html/news/test-news.html content', async () => {
+    it('should output a final html file with a content equal to tests/expected-files/news/test-news.html content', async () => {
         const results = await Promise.all([
             fsp.readFile('tests/actual-files/news/test-news.html', { encoding: 'utf-8' }),
             fsp.readFile('tests/expected-files/news/test-news.html', { encoding: 'utf-8' })
