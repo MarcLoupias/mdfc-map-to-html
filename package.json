@@ -63,26 +63,26 @@
         ]
     },
     "dependencies": {
-        "marked": "^0.6.2",
-        "md-file-converter": "^1.2.1"
+        "marked": "^0.7.0",
+        "md-file-converter": "^1.2.2"
     },
     "devDependencies": {
-        "@commitlint/cli": "^8.0.0",
-        "@commitlint/config-conventional": "^8.0.0",
-        "@commitlint/travis-cli": "^8.0.0",
+        "@commitlint/cli": "^8.1.0",
+        "@commitlint/config-conventional": "^8.1.0",
+        "@commitlint/travis-cli": "^8.1.0",
         "@types/marked": "^0.6.5",
         "@types/node": "^10.14.8",
         "chai": "^4.2.0",
-        "commitizen": "^3.1.1",
-        "cz-conventional-changelog": "^2.1.0",
-        "eslint": "^5.16.0",
+        "commitizen": "^4.0.3",
+        "cz-conventional-changelog": "^3.0.2",
+        "eslint": "^6.2.2",
         "eslint-plugin-node": "^9.1.0",
         "eslint-plugin-security": "^1.4.0",
-        "husky": "^2.4.0",
-        "mocha": "^6.1.4",
-        "rimraf": "2.6.3",
-        "semantic-release": "^15.13.16",
-        "tslint": "^5.17.0",
-        "typescript": "^3.5.1"
+        "husky": "^3.0.4",
+        "mocha": "^6.2.0",
+        "rimraf": "^3.0.0",
+        "semantic-release": "^15.13.24",
+        "tslint": "^5.19.0",
+        "typescript": "^3.5.3"
     }
 }
