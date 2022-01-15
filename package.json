@@ -63,7 +63,7 @@
         ]
     },
     "dependencies": {
-        "marked": "^0.7.0",
+        "marked": "^4.0.10",
         "md-file-converter": "^1.2.2"
     },
     "devDependencies": {
